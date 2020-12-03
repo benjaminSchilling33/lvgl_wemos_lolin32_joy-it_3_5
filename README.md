@@ -1,6 +1,6 @@
 # [LVGL](https://github.com/lvgl/lvgl) Example for WEMOS LOLIN32 with an attached Joy-it 3.5' touch display
 
-The Arduino Sketch is compatible with the (as of now) latest versions of the Arduino **lvgl** and **lv_examples** (both **7.7.2**) as well as **TFT_eSPI** (**2.3.4**) libraries.
+The Arduino Sketch is compatible with the (as of now) latest versions of the **lvgl** and **lv_examples** (both **7.7.2**) as well as **TFT_eSPI** (**2.3.4**) Arduino libraries.
 
 This repository also includes the required configuration for the **lvgl** library (`lv_conf.h`), the corresponding examples library **lv_examples** (`lv_ex_conf.h`) and the **TFT_eSPI** library config (`User_Setup.h`).
 
