@@ -3,8 +3,6 @@
 #include <lv_examples.h>
 #include <Ticker.h>
 
-#define screenWidth 480
-#define screenHeight 320
 #define LVGL_TICK_PERIOD 20
 
 TFT_eSPI tft = TFT_eSPI(); /* TFT instance */
@@ -53,7 +51,7 @@ bool my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
     data->state = LV_INDEV_STATE_PR;
   }
 
-  if (touchX > screenWidth || touchY > screenHeight)
+  if (touchX > LV_HOR_RES_MAX || touchY > LV_VER_RES_MAX)
   {
     Serial.println("Y or y outside of expected parameters..");
     Serial.print("y:");
@@ -66,8 +64,8 @@ bool my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
     /*Set the coordinates*/
     if (3 == tft.getRotation()) {
       //Shift coordinates
-      data->point.x = 480 - touchX;
-      data->point.y = 320 - touchY;
+      data->point.x = LV_HOR_RES_MAX - touchX;
+      data->point.y = LV_VER_RES_MAX - touchY;
     } else if (1 == tft.getRotation()) {
       data->point.x = touchX;
       data->point.y = touchY;
@@ -98,7 +96,7 @@ void setup()
 #endif
 
   tft.begin(); /* TFT init */
-  tft.setRotation(3); /* Landscape orientation */
+  tft.setRotation(0); /* Portrait orientation */
 
   uint16_t calData[5] = { 305, 3542, 245, 3529, 3  };
   tft.setTouch(calData);
@@ -108,8 +106,8 @@ void setup()
   /*Initialize the display*/
   lv_disp_drv_t disp_drv;
   lv_disp_drv_init(&disp_drv);
-  disp_drv.hor_res = 480;
-  disp_drv.ver_res = 320;
+  disp_drv.hor_res = LV_HOR_RES_MAX;
+  disp_drv.ver_res = LV_VER_RES_MAX;
   disp_drv.flush_cb = my_disp_flush;
   disp_drv.buffer = &disp_buf;
   lv_disp_drv_register(&disp_drv);
