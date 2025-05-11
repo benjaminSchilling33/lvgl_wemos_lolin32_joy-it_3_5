@@ -21,6 +21,6 @@ The wiring between ESP32 and the display is done as described below (originally 
 
 # Library dependencies
 
-esp32 = 3.2.0
-lvgl = 9.2.2
-TFT_eSPI = 2.5.43
+- esp32 = 3.2.0
+- lvgl = 9.2.2
+- TFT_eSPI = 2.5.43
